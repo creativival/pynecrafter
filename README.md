@@ -1,3 +1,3 @@
 # PYNECRAFTER
 
-minrcraft clone with python
+minercraft clone with python
