@@ -1,12 +1,12 @@
-"""Panda3D ShowBase"""
+"""01_03_showbase.py"""
 from direct.showbase.ShowBase import ShowBase
 from panda3d.core import *
 
 
 class App(ShowBase):
-    # コンストラクター
+    # コンストラクタ
     def __init__(self):
-        # 画面を生成する
+        # ShowBaseを継承する
         ShowBase.__init__(self)
 
         # ウインドウの設定
@@ -23,9 +23,9 @@ class App(ShowBase):
         self.camera.lookAt(0, 10, 0)
 
         # ブロックを一つ置く
-        cube = self.loader.loadModel('models/misc/rgbCube')
-        cube.setPos(0, 10, 0)
-        cube.reparentTo(self.render)
+        self.cube = self.loader.loadModel('models/misc/rgbCube')
+        self.cube.setPos(0, 10, 0)
+        self.cube.reparentTo(self.render)
 
 
 app = App()
