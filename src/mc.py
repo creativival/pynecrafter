@@ -1,4 +1,5 @@
 """src/mc.py"""
+import sys
 from direct.showbase.ShowBase import ShowBase
 from panda3d.core import *
 from . import *
@@ -20,10 +21,17 @@ class MC(ShowBase):
         self.disableMouse()
         # カメラの設定
         self.camera.setPos(60, -150, 90)
+        # self.camera.setPos(30, -75, 45)
         self.camera.lookAt(0, 0, 0)
 
         # ブロック
         self.block = Block(self, ground_size)
+
+        # プレイヤー
+        self.player = Player(self)
+
+        # ゲーム終了
+        self.accept('escape', sys.exit)
 
     def get(self, var):
         try:

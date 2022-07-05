@@ -24,12 +24,14 @@ Documents/
   │  │  ├ __init__.py
   │  │  ├ block.py  # ブロック関連
   │  │  ├ mc.py  # 統合クラス
+  │  │  ├ player.py  # プレイヤー関連
   │  │  
   │  ├ 01_01_showbase.py
   │  ├ 01_02_showbase.py
   │  ├ 01_03_showbase.py
   │  ├ xxx.py
-  │  ├ 05_01_main.py  # 統合クラスをインポートしてゲームを起動する
+  │  ├ 05_01_main.py
+  │  ├ 06_01_main.py  # 統合クラスをインポートしてゲームを起動する
   │  
 
 ```
