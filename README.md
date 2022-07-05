@@ -2,30 +2,46 @@
 
 minercraft clone with python
 
+# Directories
 
 ```
 # ディレクトリ構造
 Documents/
   ├ pynecrafter/
   │  ├ images/
-  │  │  ├ 01_01_showbase.py
+  │  │  ├ 48-488312_blockcss-minecraft-terrain-png-1-0-0.py
   │  │  
   │  ├ textures/
   │  │  ├ 0-1.png
   │  │  ├ 0-2.png
   │  │  
   │  ├ models/
-  │  │  ├ numbers.egg
+  │  │  ├ grass_block.egg
+  │  │  ├ stone.egg
+  │  │  ├ dirt.egg
+  │  │  
+  │  ├ src/
+  │  │  ├ __init__.py
+  │  │  ├ block.py  # ブロック関連
+  │  │  ├ mc.py  # 統合クラス
   │  │  
   │  ├ 01_01_showbase.py
   │  ├ 01_02_showbase.py
   │  ├ 01_03_showbase.py
   │  ├ xxx.py
+  │  ├ 05_01_main.py  # 統合クラスをインポートしてゲームを起動する
   │  
 
 ```
 
-## BLOCKS
+## Textures
+
+![terrain.png](images/48-488312_blockcss-minecraft-terrain-png-1-0-0.png) 
+
+https://www.seekpng.com/ipng/u2q8e6a9a9i1r5t4_blockcss-minecraft-terrain-png-1-0-0/
+
+
+## Blocks
 
 ```
 all_block_ids = [

@@ -4,7 +4,7 @@ import cv2
 size = 16
 
 # 画像読み込み
-img = cv2.imread("images/48-488312_blockcss-minecraft-terrain-png-1-0-0.png")
+img = cv2.imread("images/48-488312_blockcss-minecraft-terrain-png-1-0-0.png" -1)
 
 # img[top : bottom, left : right]
 for i in range(36):
