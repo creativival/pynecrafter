@@ -17,13 +17,6 @@ class MC(ShowBase):
         self.win.requestProperties(self.properties)
         self.setBackgroundColor(0, 1, 1)
 
-        # マウス操作を禁止
-        self.disableMouse()
-        # カメラの設定
-        self.camera.setPos(60, -150, 90)
-        # self.camera.setPos(30, -75, 45)
-        self.camera.lookAt(0, 0, 0)
-
         # ブロック
         self.block = Block(self, ground_size)
 

@@ -12,6 +12,34 @@ Documents/
   │  │  ├ 48-488312_blockcss-minecraft-terrain-png-1-0-0.py
   │  │  
   │  ├ textures/
+  │  │  ├ head/
+  │  │  │  ├ 1.png
+  │  │  │  ├ 2.png
+  │  │  │  ├ 3.png
+  │  │  │  ├ 4.png
+  │  │  │  ├ 5.png
+  │  │  │  ├ 6.png
+  │  │  ├ body/
+  │  │  │  ├ 1.png
+  │  │  │  ├ 2.png
+  │  │  │  ├ 3.png
+  │  │  │  ├ 4.png
+  │  │  │  ├ 5.png
+  │  │  │  ├ 6.png
+  │  │  ├ hand/
+  │  │  │  ├ 1.png
+  │  │  │  ├ 2.png
+  │  │  │  ├ 3.png
+  │  │  │  ├ 4.png
+  │  │  │  ├ 5.png
+  │  │  │  ├ 6.png
+  │  │  ├ leg/
+  │  │  │  ├ 1.png
+  │  │  │  ├ 2.png
+  │  │  │  ├ 3.png
+  │  │  │  ├ 4.png
+  │  │  │  ├ 5.png
+  │  │  │  ├ 6.png
   │  │  ├ 0-1.png
   │  │  ├ 0-2.png
   │  │  
@@ -23,15 +51,19 @@ Documents/
   │  ├ src/
   │  │  ├ __init__.py
   │  │  ├ block.py  # ブロック関連
-  │  │  ├ mc.py  # 統合クラス
   │  │  ├ player.py  # プレイヤー関連
+  │  │  ├ player_model.py  # プレイヤーモデル関連
+  │  │  ├ camera.py  # カメラ関連
+  │  │  ├ mc.py  # 統合クラス
   │  │  
   │  ├ 01_01_showbase.py
   │  ├ 01_02_showbase.py
   │  ├ 01_03_showbase.py
   │  ├ xxx.py
   │  ├ 05_01_main.py
-  │  ├ 06_01_main.py  # 統合クラスをインポートしてゲームを起動する
+  │  ├ 06_01_main.py
+  │  ├ 07_01_egg_model_maker_1_2_3_4_5_6.py  # ブロックを作成
+  │  ├ 07_02_main.py  # 統合クラスをインポートしてゲームを起動する
   │  
 
 ```
@@ -42,6 +74,9 @@ Documents/
 
 https://www.seekpng.com/ipng/u2q8e6a9a9i1r5t4_blockcss-minecraft-terrain-png-1-0-0/
 
+## Block Development View
+
+![terrain.png](images/numbers_development_view.png) 
 
 ## Blocks
 

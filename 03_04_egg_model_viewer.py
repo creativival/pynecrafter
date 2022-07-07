@@ -80,11 +80,16 @@ class App(ShowBase):
             'chest': ['6-19', '6-18', '6-17'],
             'pumpkin': ['7-7', '7-6', '6-6'],
             'jack_o_lantern': ['7-8', '7-6', '6-6'],
+            # blocks_1_2_3_4_5_6
+            'player_head': ['head/1', 'head/2', 'head/3', 'head/4', 'head/5', 'head/6'],
+            'player_body': ['body/1', 'body/2', 'body/3', 'body/4', 'body/5', 'body/6'],
+            'player_hand': ['hand/1', 'hand/2', 'hand/3', 'hand/4', 'hand/5', 'hand/6'],
+            'player_leg': ['leg/1', 'leg/2', 'leg/3', 'leg/4', 'leg/5', 'leg/6'],
         }
 
         for i, name in enumerate(blocks):
             self.cube = self.loader.loadModel(f'models/{name}')
-            self.cube.setPos(i % 10 - 5, 30, int(i / 10) * 2)
+            self.cube.setPos(i % 10 - 5, 30, int(i / 10) * 2 - 7)
             self.cube.reparentTo(self.render)
 
 
