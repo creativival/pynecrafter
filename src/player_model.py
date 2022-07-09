@@ -5,7 +5,7 @@ from panda3d.core import *
 class PlayerModel:
     def __init__(self, base):
         self.base = base
-        # model
+        # player model
         self.base.player_node = self.base.render.attachNewNode(PandaNode('player_node'))
         self.base.player_node.setPos(0.5, 0.5, 0)
         # head
