@@ -1,6 +1,6 @@
 """src/block.py"""
-from math import floor
-from panda3d.core import PandaNode
+from math import *
+from panda3d.core import *
 
 
 class Block:
@@ -58,4 +58,22 @@ class Block:
         key = f'{floor(x)}_{floor(y)}_{floor(z)}'
         return key in self.block_dictionary
 
+    def can_add_or_remove_block_at(self, position):
+        diff_positions = [
+            Point3(1, 0, 0),
+            Point3(0, 1, 0),
+            Point3(0, 0, 1),
+            Point3(-1, 0, 0),
+            Point3(0, -1, 0),
+            Point3(0, 0, -1),
+        ]
+
+        for diff_position in diff_positions:
+            x, y, z = position + diff_position
+            key = f'{floor(x)}_{floor(y)}_{floor(z)}'
+            print(key)
+            if key in self.block_dictionary:
+                return True
+        else:
+            return False
 

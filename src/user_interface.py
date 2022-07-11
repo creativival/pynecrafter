@@ -1,7 +1,7 @@
 """src/user_interface.py"""
 from math import *
 from panda3d.core import *
-from .draw_image import DrawImage
+from .utils import DrawImage
 
 
 class UserInterface:

@@ -1,11 +1,14 @@
 """src/utils.py"""
+from direct.gui.DirectGui import OnscreenImage
+from panda3d.core import TransparencyAttrib
 
 
-# def set_flat_world(base):
-#     ground_size = base.ground_size
-#     for i in range(ground_size):
-#         for j in range(ground_size):
-#             x = i - ground_size // 2
-#             y = j - ground_size // 2
-#             z = -1
-#             base.block.add_block(x, y, z, 'grass_block')
+class DrawImage(OnscreenImage):
+    def __init__(self, image, parent, scale=(1, 1, 1), pos=(1, 1, 1)):
+        super().__init__(image=image,
+                         parent=parent,
+                         pos=pos,
+                         scale=scale,
+                         )
+        self.setName(image)
+        self.setTransparency(TransparencyAttrib.M_alpha)
