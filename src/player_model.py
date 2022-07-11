@@ -3,11 +3,10 @@ from panda3d.core import *
 
 
 class PlayerModel:
-    def __init__(self, base):
-        self.base = base
+    def __init__(self):
+
         # player model
         self.base.player_node = self.base.render.attachNewNode(PandaNode('player_node'))
-        self.base.player_node.setPos(0.5, 0.5, 0)
         # head
         self.player_head_model = self.base.loader.loadModel('models/player_head')
         self.player_head_model.setScale(0.8)
@@ -62,5 +61,5 @@ class PlayerModel:
         self.player_left_leg_model.reparentTo(self.base.player_left_leg_node)
 
         # self.player_axis = self.base.loader.loadModel('models/zup-axis')
-        # self.player_axis.setScale(3)
+        # self.player_axis.setScale(1.5)
         # self.player_axis.reparentTo(self.base.player_node)

@@ -15,24 +15,19 @@ class Camera:
     mirror_cam_radius = 5
     mirror_cam_film_size = (8, 6)
 
-    def __init__(self, base):
-        self.base = base
+    def __init__(self):
 
         # マウス操作を禁止
-        base.disableMouse()
-        # # カメラの設定
-        # base.camera.setPos(10, -25, 15)
-        # # base.camera.setPos(3, 6, 3)
-        # base.camera.lookAt(0, 0, 0)
+        self.base.disableMouse()
 
         # base cam
-        base.cam.reparentTo(base.player_head_node)
-        base.camLens.setFov(Camera.base_cam_fov)
-        # base.camLens.setFar(Camera.far_length)
-        base.cam.setPos(
+        self.base.cam.reparentTo(self.base.player_head_node)
+        self.base.camLens.setFov(Camera.base_cam_fov)
+        # self.base.camLens.setFar(Camera.far_length)
+        self.base.cam.setPos(
             Vec3(0, -Camera.base_camera_back, Camera.base_camera_height)
         )
-        base.cam.lookAt(
+        self.base.cam.lookAt(
             Vec3(0, Camera.base_camera_forward, 0)
         )
 
@@ -41,9 +36,9 @@ class Camera:
         player_cam_lens.setFov(Camera.player_cam_fov)
         player_cam_lens.setNear(0.1)
         player_cam_lens.setFar(Camera.far_length)
-        self.player_cam = base.makeCamera(base.win)
+        self.player_cam = self.base.makeCamera(self.base.win)
         self.player_cam.node().setLens(player_cam_lens)
-        self.player_cam.reparentTo(base.player_head_node)
+        self.player_cam.reparentTo(self.base.player_head_node)
         self.player_cam.setPos(
             Vec3(0, Camera.player_head_height / 2, 0)
         )
@@ -53,23 +48,23 @@ class Camera:
         mirror_cam_lens.setFilmSize(*Camera.mirror_cam_film_size)
         mirror_cam_lens.setFar(Camera.far_length)
         mirror_cam_lens.setNear(-100)
-        self.mirror_cam = base.makeCamera(base.win)
+        self.mirror_cam = self.base.makeCamera(self.base.win)
         self.mirror_cam.node().setLens(mirror_cam_lens)
-        self.mirror_cam.reparentTo(base.player_head_node)
+        self.mirror_cam.reparentTo(self.base.player_head_node)
         self.mirror_cam.setPos(
             Vec3(0, Camera.mirror_cam_radius, 0)
         )
         self.mirror_cam.setH(180)
 
         # カメラ設定
-        # base.cameras = [base.cam, self.player_cam]
-        base.cameras = [base.cam, self.player_cam, self.mirror_cam]
-        base.activeCam = 0
-        base.cameras[1].node().getDisplayRegion(0).setActive(0)
-        base.cameras[2].node().getDisplayRegion(0).setActive(0)
+        # self.base.cameras = [self.base.cam, self.player_cam]
+        self.base.cameras = [self.base.cam, self.player_cam, self.mirror_cam]
+        self.base.activeCam = 0
+        self.base.cameras[1].node().getDisplayRegion(0).setActive(0)
+        self.base.cameras[2].node().getDisplayRegion(0).setActive(0)
 
         # カメラを切り替え
-        base.accept('t', self.toggle_cam)
+        self.base.accept('t', self.toggle_cam)
 
     def toggle_cam(self):
         self.base.cameras[self.base.activeCam].node().getDisplayRegion(0).setActive(0)

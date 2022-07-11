@@ -60,6 +60,7 @@ class App(ShowBase):
             'orange_wool': ['13-2'],
             'birch_planks': ['13-6'],
             'light_gray_wool': ['14-1'],
+            'target_block': ['target_block'],  # 追記
             # blocks_1_5
             'oak_log': ['1-4', '1-5'],
             'bookshelf': ['2-3', '0-4'],

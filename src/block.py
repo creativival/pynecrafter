@@ -52,4 +52,9 @@ class Block:
                 z = -1
                 self.add_block(x, y, z, 'grass_block')
 
+    def is_block_at(self, position):
+        x, y, z = position
+        key = f'{floor(x)}_{floor(y)}_{floor(z)}'
+        return key in self.block_dictionary
+
 
