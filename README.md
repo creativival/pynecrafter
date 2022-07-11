@@ -2,12 +2,19 @@
 
 minercraft clone with python
 
+# import libraries
 
+```
+$ pip install -r requirements.txt
+```
 
+# Run
 
-
-
-
+```
+$ python main.py
+or
+$ python3 main.py
+```
 
 # Directories
 
@@ -61,6 +68,7 @@ Documents/
   │  │  ├ player.py  # プレイヤー関連
   │  │  ├ player_model.py  # プレイヤーモデル関連
   │  │  ├ camera.py  # カメラ関連
+  │  │  ├ target.py  # ターゲットブロック関連
   │  │  ├ mc.py  # 統合クラス
   │  │  
   │  ├ 01_01_showbase.py
@@ -81,7 +89,7 @@ Documents/
 
 https://www.seekpng.com/ipng/u2q8e6a9a9i1r5t4_blockcss-minecraft-terrain-png-1-0-0/
 
-## Block Development View
+## Block Textures Development View
 
 ![terrain.png](images/numbers_development_view.png) 
 
