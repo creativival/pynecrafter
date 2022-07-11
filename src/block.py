@@ -4,6 +4,7 @@ from panda3d.core import PandaNode
 
 
 class Block:
+
     def __init__(self, base, ground_size):
         self.base = base
         self.ground_size = ground_size

@@ -34,9 +34,6 @@ class Player(PlayerModel, Camera, Target):
             'a': 0,
             's': 0,
             'd': 0,
-            # 'mouse1': 0,
-            # 'mouse2': 0,
-            # 'mouse3': 0,
         }
 
         # ユーザーのキー操作
@@ -48,8 +45,8 @@ class Player(PlayerModel, Camera, Target):
         base.accept('s-up', self.update_key_map, ["s", 0])
         base.accept('d', self.update_key_map, ["d", 1])
         base.accept('d-up', self.update_key_map, ["d", 0])
-        base.accept('mouse1', self.player_add_block)
-        base.accept('mouse3', self.player_remove_block)
+        base.accept('mouse1', self.player_remove_block)
+        base.accept('mouse3', self.player_add_block)
 
         # プレイヤーのアップデート
         base.taskMgr.add(self.player_update, "player_update")
@@ -122,13 +119,14 @@ class Player(PlayerModel, Camera, Target):
         return task.cont
     
     def player_add_block(self):
+        block_id = self.base.hotbar_blocks[self.base.selected_hotbar_num][0]
         if self.target_position and \
                 not self.base.block.is_block_at(self.target_position):
             self.base.block.add_block(
                 self.target_position.x,
                 self.target_position.y,
                 self.target_position.z,
-                'stone'
+                block_id
             )
 
     def player_remove_block(self):

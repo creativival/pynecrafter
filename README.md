@@ -1,14 +1,14 @@
 # PYNECRAFTER
 
-minercraft clone with python
+Minecraft clone with python (Panda3D)
 
-# import libraries
+# Import libraries
 
 ```
 $ pip install -r requirements.txt
 ```
 
-# Run
+# Run the Pynecrafter
 
 ```
 $ python main.py
@@ -69,6 +69,8 @@ Documents/
   │  │  ├ player_model.py  # プレイヤーモデル関連
   │  │  ├ camera.py  # カメラ関連
   │  │  ├ target.py  # ターゲットブロック関連
+  │  │  ├ user_interface.py  # インターフェース関連
+  │  │  ├ draw_image.py  # 画像関連
   │  │  ├ mc.py  # 統合クラス
   │  │  
   │  ├ 01_01_showbase.py
