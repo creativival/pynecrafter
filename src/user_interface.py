@@ -41,8 +41,17 @@ class UserInterface:
         )
 
         # select item
-        for i in range(1, 10):
-            self.accept(str(i), self.select, [i])
+        self.accept('1', self.select, [1])
+        self.accept('2', self.select, [2])
+        self.accept('3', self.select, [3])
+        self.accept('4', self.select, [4])
+        self.accept('5', self.select, [5])
+        self.accept('6', self.select, [6])
+        self.accept('7', self.select, [7])
+        self.accept('8', self.select, [8])
+        self.accept('9', self.select, [9])
+        # for i in range(1, 10):
+        #     self.accept(str(i), self.select, [i])
 
     def select(self, i):
         self.selected_hotbar_num = i - 1

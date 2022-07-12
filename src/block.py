@@ -71,7 +71,6 @@ class Block:
         for diff_position in diff_positions:
             x, y, z = position + diff_position
             key = f'{floor(x)}_{floor(y)}_{floor(z)}'
-            print(key)
             if key in self.block_dictionary:
                 return True
         else:

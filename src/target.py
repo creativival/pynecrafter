@@ -17,16 +17,14 @@ class Target:
         x0, y0, z0 = self.position
         phi, theta, _ = self.direction
         # print(x0, y0, z0, phi, theta)
-        # print(self.direction)
-        # print(self.direction.getStandardizedHpr())
+        # 方向ベクトル
         direction_vec = Vec3(
             sin(radians(90 - theta)) * cos(radians(phi + 90)),
             sin(radians(90 - theta)) * sin(radians(phi + 90)),
             cos(radians(90 - theta))
         )
 
-        # 方向ベクトル
-        if theta:
+        if not theta == 0:
             if theta < 0:
                 check_heights = [1, 0]
             else:
@@ -44,36 +42,6 @@ class Target:
                 return None
         else:
             return None
-
-
-        # # 方向ベクトル
-        # direction_vec = Vec3(
-        #     sin(radians(theta)) * cos(radians(phi)),
-        #     sin(radians(theta)) * sin(radians(phi)),
-        #     cos(radians(theta))
-        # )
-        # print(theta)
-        # print(direction_vec)
-        # print(x0, y0, z0 + self.eye_height)
-        # if not theta == 0:
-        #     if theta < 0:
-        #         check_heights = [0]
-        #     else:
-        #         check_heights = [2, 3, 4, 5, 6, 7]
-        #
-        #     for height in check_heights:
-        #         z = height
-        #         x = x0 + (z - z0 - self.eye_height) * direction_vec.x / direction_vec.z
-        #         y = y0 + (z - z0 - self.eye_height) * direction_vec.y / direction_vec.z
-        #         target_position = Point3(x, y, z)
-        #         if (target_position - Point3(x0, y0, z0 + self.eye_height)).length() < 8:
-        #         # if (target_position - Point3(x0, y0, z0 + self.eye_height)).length() < 8 and\
-        #         #         self.base.block.can_add_or_remove_block_at(target_position):
-        #             return Point3(x, y, z)
-        #         else:
-        #             return None
-        # else:
-        #     return None
 
     def set_target_block(self, task):
         self.target_position = self.get_target_position()

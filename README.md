@@ -23,7 +23,11 @@ $ python3 main.py
 Documents/
   ├ pynecrafter/
   │  ├ images/
-  │  │  ├ 48-488312_blockcss-minecraft-terrain-png-1-0-0.py
+  │  │  ├ 48-488312_blockcss-minecraft-terrain-png-1-0-0.png
+  │  │  ├ hotbar1.png
+  │  │  ├ hotbar2.png
+  │  │  ├ hotbar3.png
+  │  │  ├ hotbar4.png
   │  │  
   │  ├ textures/
   │  │  ├ head/
@@ -70,7 +74,7 @@ Documents/
   │  │  ├ camera.py  # カメラ関連
   │  │  ├ target.py  # ターゲットブロック関連
   │  │  ├ user_interface.py  # インターフェース関連
-  │  │  ├ draw_image.py  # 画像関連
+  │  │  ├ utils.py  # ユーティリティー
   │  │  ├ mc.py  # 統合クラス
   │  │  
   │  ├ 01_01_showbase.py
@@ -81,6 +85,7 @@ Documents/
   │  ├ 06_01_main.py
   │  ├ 07_01_egg_model_maker_1_2_3_4_5_6.py  # ブロックを作成
   │  ├ 07_02_main.py  # 統合クラスをインポートしてゲームを起動する
+  │  ├ 08_01_main.py  # 統合クラスをインポートしてゲームを起動する
   │  
 
 ```
