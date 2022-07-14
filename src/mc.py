@@ -6,10 +6,12 @@ from . import *
 
 
 class MC(ShowBase, UserInterface):
-    def __init__(self, ground_size=128):
+    def __init__(self, ground_size=128, mode='normal'):
+        self.mode = mode
         # ShowBaseを継承する
         ShowBase.__init__(self)
         UserInterface.__init__(self)
+
 
         # ウインドウの設定
         self.properties = WindowProperties()

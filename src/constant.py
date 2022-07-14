@@ -1,4 +1,4 @@
-blocks = [
+all_blocks = [
     # blocks_1
     ['stone', ['0-1']],
     ['dirt', ['0-2']],
