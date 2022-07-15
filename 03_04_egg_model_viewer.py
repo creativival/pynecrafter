@@ -32,7 +32,7 @@ class App(ShowBase):
             'diamond_ore': ['3-2'],
             'redstone_ore': ['3-3'],
             'oak_leaves': ['3-4'],
-            'dark_oak_leaves': ['3-5'],
+            'oak_plants': ['0-4'],
             'stone_bricks': ['3-6'],
             'lava': ['3-21'],
             'water': ['3-22'],
@@ -61,7 +61,7 @@ class App(ShowBase):
             'birch_planks': ['13-6'],
             'light_gray_wool': ['14-1'],
             'target_block': ['target_block'],  # 追記
-            # blocks_1_5
+            # # blocks_1_5
             'oak_log': ['1-4', '1-5'],
             'bookshelf': ['2-3', '0-4'],
             'crafting_table': ['3-11', '2-11'],
@@ -70,18 +70,18 @@ class App(ShowBase):
             'spruce_log': ['7-4', '1-5'],
             'binch_log': ['7-5', '1-5'],
             'jungle_log': ['9-9', '1-5'],
-            # blocks_1_5_6
+            # # blocks_1_5_6
             'grass_block': ['0-3', '0-0', '0-2'],
             'tnt': ['0-8', '0-9', '0-10'],
             'sticky_piston': ['6-12', '6-10', '6-13'],
             'piston': ['6-12', '6-11', '6-13'],
-            # blocks_1_2_5
+            # # blocks_1_2_5
             'furnace': ['2-12', '2-13', '3-14'],
             'burning_furnace': ['3-13', '2-13', '3-14'],
             'chest': ['6-19', '6-18', '6-17'],
             'pumpkin': ['7-7', '7-6', '6-6'],
             'jack_o_lantern': ['7-8', '7-6', '6-6'],
-            # blocks_1_2_3_4_5_6
+            # # blocks_1_2_3_4_5_6
             'player_head': ['head/1', 'head/2', 'head/3', 'head/4', 'head/5', 'head/6'],
             'player_body': ['body/1', 'body/2', 'body/3', 'body/4', 'body/5', 'body/6'],
             'player_hand': ['hand/1', 'hand/2', 'hand/3', 'hand/4', 'hand/5', 'hand/6'],

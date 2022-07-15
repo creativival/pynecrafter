@@ -32,6 +32,7 @@ Documents/
   │  │  ├ hotbar2.png
   │  │  ├ hotbar3.png
   │  │  ├ hotbar4.png
+  │  │  ├ inventory.png
   │  │  
   │  ├ textures/
   │  │  ├ head/
@@ -79,6 +80,7 @@ Documents/
   │  │  ├ target.py  # ターゲットブロック関連
   │  │  ├ user_interface.py  # インターフェース関連
   │  │  ├ utils.py  # ユーティリティー
+  │  │  ├ inventory.py  # インベントリ
   │  │  ├ mc.py  # 統合クラス
   │  │  
   │  ├ 01_01_showbase.py
@@ -136,7 +138,7 @@ all_blocks = [
     ['diamond_ore', ['3-2']],
     ['redstone_ore', ['3-3']],
     ['oak_leaves', ['3-4']],
-    ['dark_oak_leaves', ['3-5']],
+    ['oak_plants', ['0-4']],
     ['stone_bricks', ['3-6']],
     ['lava', ['3-21']],
     ['water', ['3-22']],

@@ -15,8 +15,6 @@ class UserInterface:
         ['red_wool', ['8-1']],
         ['glass', ['3-1']],
         ['gold_block', ['1-7']],
-        # ['diamond_block', ['1-8']],
-        # ['emerald_block', ['1-9']],
         ['bricks', ['0-7']],
     ]
 
@@ -34,14 +32,14 @@ class UserInterface:
                 f'textures/{block_image_name}.png',
                 self.a2dBottomCenter,
                 scale=(16 / 164, 16 / 164, 16 / 164),
-                pos=((i - 4) * 0.22, 0, -1 + 20 / 164)
+                pos=((i - 4) * 0.22, 0, 20 / 164)
             )
             self.set(f'bar{i + 1}', image)
         self.hotbar = DrawImage(
             'images/hotbar1.png',
             self.a2dBottomCenter,
             scale=(1, 1, 20 / 164),
-            pos=(0, 0, -1 + 20 / 164)
+            pos=(0, 0, 20 / 164)
         )
 
         # text window
@@ -50,14 +48,14 @@ class UserInterface:
         #     'select item: 123456789\n' \
         #     'set block: left-click\n' \
         #     'break block: right-click\n' \
-        #     'toggle camera: T\n' \
+        #     'toggle inventory: E\n' \
         #     'toggle text window: X'
         how_to_use = \
             '移動: W A S D\n' \
             'アイテム選択: 123456789\n' \
             'ブロックを置く: 左クリック\n' \
             'ブロックを壊す: 右クリック\n' \
-            'カメラの切り替え: T\n' \
+            'インベントリの表示/非表示: E\n' \
             '操作説明を表示/非表示: X'
         self.text_window = DrawText(
             how_to_use,
@@ -153,5 +151,7 @@ class UserInterface:
 
     def close_splash_screen(self, task):
         self.splash_screen_node.detachNode()
+        wellcome_text = 'ようこそ Pynecrafter!'
+        self.console_window.setText(wellcome_text)
         self.console_window.start_time = time()  # 実行した時間を start_time に記録
         return task.done

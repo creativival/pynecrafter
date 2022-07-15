@@ -20,7 +20,7 @@ blocks = {
     {'diamond_ore': ['3-2']},
     {'redstone_ore': ['3-3']},
     {'oak_leaves': ['3-4']},
-    {'dark_oak_leaves': ['3-5']},
+    {'oak_plants': ['0-4']},
     {'stone_bricks': ['3-6']},
     {'lava': ['3-21']},
     {'water': ['3-22']},

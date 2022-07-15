@@ -5,13 +5,13 @@ from panda3d.core import *
 from . import *
 
 
-class MC(ShowBase, UserInterface):
+class MC(ShowBase, UserInterface, Inventory):
     def __init__(self, ground_size=128, mode='normal'):
         self.mode = mode
         # ShowBaseを継承する
         ShowBase.__init__(self)
         UserInterface.__init__(self)
-
+        Inventory.__init__(self)
 
         # ウインドウの設定
         self.properties = WindowProperties()
