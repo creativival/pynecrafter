@@ -74,16 +74,16 @@ class UserInterface:
         )
         self.console_window.start_time = time()  # 実行した時間を start_time に記録
 
-        # select item
-        self.accept('1', self.select, [1])
-        self.accept('2', self.select, [2])
-        self.accept('3', self.select, [3])
-        self.accept('4', self.select, [4])
-        self.accept('5', self.select, [5])
-        self.accept('6', self.select, [6])
-        self.accept('7', self.select, [7])
-        self.accept('8', self.select, [8])
-        self.accept('9', self.select, [9])
+        # select hotbar
+        self.accept('1', self.select_hotbar, [1])
+        self.accept('2', self.select_hotbar, [2])
+        self.accept('3', self.select_hotbar, [3])
+        self.accept('4', self.select_hotbar, [4])
+        self.accept('5', self.select_hotbar, [5])
+        self.accept('6', self.select_hotbar, [6])
+        self.accept('7', self.select_hotbar, [7])
+        self.accept('8', self.select_hotbar, [8])
+        self.accept('9', self.select_hotbar, [9])
 
         # テキストウインドウを表示/ 非表示
         self.accept('x', self.toggle_text_window)
@@ -111,7 +111,7 @@ class UserInterface:
         )
         self.taskMgr.doMethodLater(3, self.close_splash_screen, "close_splash_screen")
 
-    def select(self, i):
+    def select_hotbar(self, i):
         self.selected_hotbar_num = i - 1
         self.selected_block = UserInterface.hotbar_blocks[i - 1]
         self.hotbar.setImage(f'images/hotbar{i}.png')

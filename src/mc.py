@@ -1,17 +1,17 @@
 """src/mc.py"""
-import sys
 from direct.showbase.ShowBase import ShowBase
 from panda3d.core import *
 from . import *
 
 
-class MC(ShowBase, UserInterface, Inventory):
+class MC(ShowBase, UserInterface, Inventory, Menu):
     def __init__(self, ground_size=128, mode='normal'):
         self.mode = mode
         # ShowBaseを継承する
         ShowBase.__init__(self)
         UserInterface.__init__(self)
         Inventory.__init__(self)
+        Menu.__init__(self)
 
         # ウインドウの設定
         self.properties = WindowProperties()
@@ -27,7 +27,7 @@ class MC(ShowBase, UserInterface, Inventory):
         self.player = Player(self)
 
         # ゲーム終了
-        self.accept('escape', sys.exit)
+        self.accept('escape', exit)
 
     def get(self, var):
         try:

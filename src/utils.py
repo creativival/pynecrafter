@@ -1,5 +1,5 @@
 """src/utils.py"""
-from direct.gui.DirectGui import OnscreenImage, OnscreenText
+from direct.gui.DirectGui import OnscreenImage, OnscreenText, DirectButton
 from panda3d.core import *
 
 
@@ -26,4 +26,23 @@ class DrawText(OnscreenText):
                          bg=bg,
                          mayChange=True,
                          )
-        self.start_time = None
+
+
+class DrawMenuButton(DirectButton):
+    def __init__(self, base, text, parent, pos, command):
+        super().__init__(
+            geom=(
+                base.button_model.find('**/button_up'), base.button_model.find('**/button_press'),
+                base.button_model.find('**/button_over'), base.button_model.find('**/button_disabled')
+            ),
+            text=text,
+            parent=parent,
+            pos=pos,
+            command=command,
+            scale=0.5,
+            text_fg=(1, 1, 1, 1),
+            text_scale=0.1,
+            text_pos=(0, -0.04),
+            text_font=base.font,
+            relief=None,
+        )
