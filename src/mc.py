@@ -9,6 +9,7 @@ class MC(ShowBase, UserInterface, Inventory, Menu):
         self.mode = mode
         # ShowBaseを継承する
         ShowBase.__init__(self)
+        self.font = self.loader.loadFont('fonts/PixelMplus12-Regular.ttf')
         UserInterface.__init__(self)
         Inventory.__init__(self)
         Menu.__init__(self)

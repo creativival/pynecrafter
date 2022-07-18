@@ -64,8 +64,8 @@ class Inventory:
 
         # frame
         self.frame = DrawImage(
-            'images/inventory.png',
-            self.inventory_node,
+            parent=self.inventory_node,
+            image='images/inventory.png',
             scale=(11 / 9, 11 / 9, 74 * 11 / 200 / 9),
             pos=(0, 0, 0),
         )

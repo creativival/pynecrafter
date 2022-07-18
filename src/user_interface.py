@@ -21,23 +21,20 @@ class UserInterface:
     def __init__(self):
         self.selected_hotbar_num = 0
         self.selected_block = UserInterface.hotbar_blocks[0]
-        # self.font = self.loader.loadFont('fonts/Minecraftia.ttf')
-        # self.font = self.loader.loadFont('fonts/misaki_gothic.ttf')
-        self.font = self.loader.loadFont('fonts/PixelMplus12-Regular.ttf')
 
         # draw hotbar
         for i, block in enumerate(UserInterface.hotbar_blocks):
             block_image_name = block[1][0]
             image = DrawImage(
-                f'textures/{block_image_name}.png',
-                self.a2dBottomCenter,
+                parent=self.a2dBottomCenter,
+                image=f'textures/{block_image_name}.png',
                 scale=(16 / 164, 16 / 164, 16 / 164),
                 pos=((i - 4) * 0.22, 0, 20 / 164)
             )
             self.set(f'bar{i + 1}', image)
         self.hotbar = DrawImage(
-            'images/hotbar1.png',
-            self.a2dBottomCenter,
+            parent=self.a2dBottomCenter,
+            image='images/hotbar1.png',
             scale=(1, 1, 20 / 164),
             pos=(0, 0, 20 / 164)
         )
@@ -58,18 +55,18 @@ class UserInterface:
             'インベントリの表示/非表示: E\n' \
             '操作説明を表示/非表示: X'
         self.text_window = DrawText(
-            how_to_use,
-            self.a2dTopLeft,
-            self.font,
+            parent=self.a2dTopLeft,
+            text=how_to_use,
+            font=self.font,
         )
 
         # console window
         # wellcome_text = 'Wellcome to Pynecrafter!'
         wellcome_text = 'ようこそ Pynecrafter!'
         self.console_window = DrawText(
-            wellcome_text,
-            self.a2dTopLeft,
-            self.font,
+            parent=self.a2dTopLeft,
+            text=wellcome_text,
+            font=self.font,
             pos=(0.05, -1.5)
         )
         self.console_window.start_time = time()  # 実行した時間を start_time に記録
@@ -95,17 +92,17 @@ class UserInterface:
         # スプラッシュスクリーン
         self.splash_screen_node = self.aspect2d.attachNewNode("splash_screen_node")
         self.splash_image = DrawImage(
-            'images/pynecrafter_splash.png',
-            self.splash_screen_node,
+            parent=self.splash_screen_node,
+            image='images/pynecrafter_splash.png',
             scale=(3 / 2, 1, 1),
             pos=(0, 0, 0),
         )
         loading_text = 'creating a new world...'
         loading_text = '新しい世界を創造しています...'
         self.loading_text = DrawText(
-            loading_text,
-            self.splash_screen_node,
-            self.font,
+            parent=self.splash_screen_node,
+            text=loading_text,
+            font=self.font,
             pos=(-.2, -.5, 0),
             scale=0.1,
         )

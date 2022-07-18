@@ -35,6 +35,11 @@ Documents/
   │  │  ├ inventory.png
   │  │  
   │  ├ textures/
+  │  │  ├ button/
+  │  │  │  ├ button_up.png.png
+  │  │  │  ├ button_over.png
+  │  │  │  ├ button_press.png
+  │  │  │  ├ button_disabled.png
   │  │  ├ head/
   │  │  │  ├ 1.png
   │  │  │  ├ 2.png
@@ -67,6 +72,7 @@ Documents/
   │  │  ├ 0-2.png
   │  │  
   │  ├ models/
+  │  │  ├ button_maps.egg
   │  │  ├ grass_block.egg
   │  │  ├ stone.egg
   │  │  ├ dirt.egg
@@ -81,6 +87,7 @@ Documents/
   │  │  ├ user_interface.py  # インターフェース関連
   │  │  ├ utils.py  # ユーティリティー
   │  │  ├ inventory.py  # インベントリ
+  │  │  ├ menu.py  # メニュー関連
   │  │  ├ mc.py  # 統合クラス
   │  │  
   │  ├ 01_01_showbase.py
@@ -112,6 +119,10 @@ https://itouhiro.hatenablog.com/entry/20130602/font
 ## Block Textures Development View
 
 ![terrain.png](images/numbers_development_view.png) 
+
+## Menu Design
+
+https://github.com/PlumpMath/Panda3DCraft
 
 ## Blocks
 

@@ -93,8 +93,8 @@ class Minecraft(ShowBase):
         # splash screen
         self.splash_screen_node = self.aspect2d.attachNewNode("inventory_screen")
         self.splash_image = DrawImage(
-            'images/splash_screen.png',
-            self.splash_screen_node,
+            parent=self.splash_screen_node,
+            image='images/splash_screen.png',
             scale=(9 / 6, 1, 1),
             pos=(0, 0, 0),
         )
@@ -184,15 +184,15 @@ class Minecraft(ShowBase):
         # draw hotbar
         for i, block_id in enumerate(self.block.hotbar_block_ids):
             image = DrawImage(
-                f'cube_textures/{block_id}.png',
-                self.a2dpBottomCenter,
+                parent=self.a2dpBottomCenter,
+                image=f'cube_textures/{block_id}.png',
                 scale=(16 / 164, 16 / 164, 16 / 164),
                 pos=((i - 4) * 0.22, 0, 20 / 164)
             )
             self.set(f'bar{i + 1}', image)
         self.hotbar = DrawImage(
-            'images/hotbar.png',
-            self.a2dpBottomCenter,
+            parent=self.a2dpBottomCenter,
+            image='images/hotbar.png',
             scale=(1, 1, 20 / 164),
             pos=(0, 0, 20 / 164)
         )
