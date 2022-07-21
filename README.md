@@ -2,6 +2,12 @@
 
 Minecraft clone with python (Panda3D)
 
+# Export Libraries
+
+```
+pip freeze > requirements.txt
+```
+
 # Import libraries
 
 ```

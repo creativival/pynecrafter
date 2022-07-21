@@ -7,6 +7,7 @@ from . import *
 class MC(ShowBase, UserInterface, Inventory, Menu):
     def __init__(self, ground_size=128, mode='normal'):
         self.mode = mode
+        self.ground_size = ground_size
         # ShowBaseを継承する
         ShowBase.__init__(self)
         self.font = self.loader.loadFont('fonts/PixelMplus12-Regular.ttf')
@@ -28,7 +29,13 @@ class MC(ShowBase, UserInterface, Inventory, Menu):
         self.player = Player(self)
 
         # ゲーム終了
-        self.accept('escape', exit)
+        self.accept('escape', self.exit_game)
+
+    def exit_game(self):
+        if self.db:
+            self.cursor.close()
+            self.db.close()
+        exit()
 
     def get(self, var):
         try:

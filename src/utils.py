@@ -33,23 +33,42 @@ class DrawText(OnscreenText):
 
 
 class DrawMappedButton(DirectButton):
-    def __init__(self, parent=None, model=None, text='', font=None, pos=(0, 0, 0), command=None):
-        super().__init__(
-            parent=parent,
-            geom=(
-                model.find('**/button_up'), model.find('**/button_press'),
-                model.find('**/button_over'), model.find('**/button_disabled')
-            ),
-            text=text,
-            text_font=font,
-            pos=pos,
-            command=command,
-            scale=0.5,
-            text_fg=(1, 1, 1, 1),
-            text_scale=0.1,
-            text_pos=(0, -0.04),
-            relief=None,
-        )
+    def __init__(self, parent=None, model=None, text='', font=None, pos=(0, 0, 0), command=None, extra_args=None):
+        if extra_args is None:
+            super().__init__(
+                parent=parent,
+                geom=(
+                    model.find('**/button_up'), model.find('**/button_press'),
+                    model.find('**/button_over'), model.find('**/button_disabled')
+                ),
+                text=text,
+                text_font=font,
+                pos=pos,
+                command=command,
+                scale=0.5,
+                text_fg=(1, 1, 1, 1),
+                text_scale=0.1,
+                text_pos=(0, -0.04),
+                relief=None,
+            )
+        else:
+            super().__init__(
+                parent=parent,
+                geom=(
+                    model.find('**/button_up'), model.find('**/button_press'),
+                    model.find('**/button_over'), model.find('**/button_disabled')
+                ),
+                text=text,
+                text_font=font,
+                pos=pos,
+                command=command,
+                extraArgs=extra_args,
+                scale=0.5,
+                text_fg=(1, 1, 1, 1),
+                text_scale=0.1,
+                text_pos=(0, -0.04),
+                relief=None,
+            )
         self.initialiseoptions(DrawMappedButton)  # 全ての初期化メソッドを呼び出す
 
 

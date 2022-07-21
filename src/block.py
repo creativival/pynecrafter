@@ -9,6 +9,8 @@ class Block:
         self.base = base
         self.ground_size = ground_size
         self.block_dictionary = {}
+        # ブロックノード
+        self.base.block_node = self.base.render.attachNewNode(PandaNode('block_node'))  # 追記
 
         # グラウンドを作成
         self.set_flat_world()
@@ -19,7 +21,7 @@ class Block:
 
     def add_block_model(self, x, y, z, block_id):
         key = f'{floor(x)}_{floor(y)}_{floor(z)}'
-        self.base.set(key, self.base.render.attachNewNode(PandaNode(key)))
+        self.base.set(key, self.base.block_node.attachNewNode(PandaNode(key)))  # 修正
         placeholder = self.base.get(key)
         placeholder.setPos(floor(x), floor(y), floor(z))
         block = self.base.loader.loadModel(f'models/{block_id}')
