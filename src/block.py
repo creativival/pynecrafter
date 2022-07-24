@@ -1,4 +1,5 @@
 """src/block.py"""
+import re
 from math import *
 from panda3d.core import *
 
@@ -56,8 +57,8 @@ class Block:
                 self.add_block(x, y, z, 'grass_block')
 
     def is_block_at(self, position):
-        x, y, z = position
-        key = f'{floor(x)}_{floor(y)}_{floor(z)}'
+        x, y, z = [floor(value) for value in position]
+        key = f'{x}_{y}_{z}'
         return key in self.block_dictionary
 
     def can_add_or_remove_block_at(self, position):
@@ -78,3 +79,13 @@ class Block:
         else:
             return False
 
+    def get_floor_height(self):
+        x, y, z = [floor(value) for value in self.base.player.position]
+        s = re.compile(f'{x}_{y}_.+')
+        floor_height = -1
+        for key in self.block_dictionary:
+            if s.search(key):
+                _, _, block_z = [floor(float(value)) for value in key.split('_')]
+                if floor_height < block_z <= z:
+                    floor_height = block_z
+        return floor_height

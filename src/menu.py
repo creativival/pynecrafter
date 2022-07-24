@@ -236,7 +236,7 @@ class Menu:
             'SELECT id from worlds where name = ?',
             (world_name,)
         )
-        world_id = self.cursor.fetchall()[0][0]
+        world_id = self.cursor.fetchone()[0]
 
         return world_id
 
@@ -249,7 +249,7 @@ class Menu:
             self.connect_db()
             self.create_tables()
             self.cursor.execute('SELECT COUNT(*) FROM worlds WHERE name = ?', (world_name,))
-            has_same_world_name = self.cursor.fetchall()[0][0]
+            has_same_world_name = self.cursor.fetchone()[0]
             # print(has_same_world_name)
 
             # ワールドを保存

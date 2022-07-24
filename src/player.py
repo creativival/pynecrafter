@@ -13,6 +13,8 @@ class Player(PlayerModel, Camera, Target):
     max_pitch_angle = 60
     speed = 10
     eye_height = 1.6
+    gravity_force = 9.8
+    jump_speed = 10
 
     # コンストラクタ
     def __init__(self, base):
@@ -27,6 +29,9 @@ class Player(PlayerModel, Camera, Target):
         self.mouse_pos_x = 0
         self.mouse_pos_y = 0
         self.target_position = None
+        self.is_on_ground = True  # 地面に接している
+        # self.passed_time_of_jump = None
+        # self.jump_positions_with_time = None
 
         # キー操作を保存
         self.key_map = {
@@ -34,6 +39,9 @@ class Player(PlayerModel, Camera, Target):
             'a': 0,
             's': 0,
             'd': 0,
+            'space': 0,
+            'arrow_up': 0,
+            'arrow_down': 0,
         }
 
         # ユーザーのキー操作
@@ -47,6 +55,12 @@ class Player(PlayerModel, Camera, Target):
         base.accept('d-up', self.update_key_map, ["d", 0])
         base.accept('mouse1', self.player_remove_block)
         base.accept('mouse3', self.player_add_block)
+        base.accept('space', self.update_key_map, ["space", 1])
+        base.accept('space-up', self.update_key_map, ["space", 0])
+        base.accept('arrow_up', self.update_key_map, ["arrow_up", 1])
+        base.accept('arrow_up-up', self.update_key_map, ["arrow_up", 0])
+        base.accept('arrow_down', self.update_key_map, ["arrow_down", 1])
+        base.accept('arrow_down-up', self.update_key_map, ["arrow_down", 0])
 
         # プレイヤーのアップデート
         base.taskMgr.add(self.player_update, "player_update")
@@ -76,42 +90,66 @@ class Player(PlayerModel, Camera, Target):
     def update_velocity(self):
         key_map = self.key_map
 
-        if key_map['w'] or key_map['a'] or key_map['s'] or key_map['d']:
-            heading = self.direction.x
-            if key_map['w'] and key_map['a']:
-                angle = 135
-            elif key_map['a'] and key_map['s']:
-                angle = 225
-            elif key_map['s'] and key_map['d']:
-                angle = 315
-            elif key_map['d'] and key_map['w']:
-                angle = 45
-            elif key_map['w']:
-                angle = 90
-            elif key_map['a']:
-                angle = 180
-            elif key_map['s']:
-                angle = 270
-            else:  # key_map['d']
-                angle = 0
-            self.velocity = \
-                Vec3(
-                    cos(radians(angle + heading)),
-                    sin(radians(angle + heading)),
-                    0
-                ) * Player.speed
-        else:
-            self.velocity = Vec3(0, 0, 0)
+        if self.is_on_ground:
+            if key_map['w'] or key_map['a'] or key_map['s'] or key_map['d']:
+                heading = self.direction.x
+                if key_map['w'] and key_map['a']:
+                    angle = 135
+                elif key_map['a'] and key_map['s']:
+                    angle = 225
+                elif key_map['s'] and key_map['d']:
+                    angle = 315
+                elif key_map['d'] and key_map['w']:
+                    angle = 45
+                elif key_map['w']:
+                    angle = 90
+                elif key_map['a']:
+                    angle = 180
+                elif key_map['s']:
+                    angle = 270
+                else:  # key_map['d']
+                    angle = 0
+                self.velocity = \
+                    Vec3(
+                        cos(radians(angle + heading)),
+                        sin(radians(angle + heading)),
+                        0
+                    ) * Player.speed
+            else:
+                self.velocity = Vec3(0, 0, 0)
+
+            if key_map['space']:
+                self.is_on_ground = False
+                self.velocity.setZ(Player.jump_speed)
 
     def update_position(self):
         self.update_velocity()
         dt = globalClock.getDt()
         self.position = self.position + self.velocity * dt
-        # print(self.position)
+
+        # floor_height = 0
+        floor_height = self.base.block.get_floor_height() + 1
+        # print(floor_height)
+
+        # # ジャンプ中の位置情報を保存
+        # self.record_jump_positions_with_time(dt, floor_height)
+
+        if not self.is_on_ground:
+            if self.position.z <= floor_height:
+                self.position.z = floor_height
+                self.is_on_ground = True
+            else:
+                self.velocity.setZ(self.velocity.getZ() - Player.gravity_force * dt)
+        else:
+            if floor_height < self.position.z:
+                self.is_on_ground = False
+                self.velocity.setZ(-Player.gravity_force * dt)
 
     def draw(self):
         self.base.player_node.setH(self.direction.x)
         self.base.player_head_node.setP(self.direction.y)
+        # # ブロックと干渉したとき位置を修正
+        self.change_position_when_interfering_with_block()
         self.base.player_node.setPos(self.position)
 
     def player_update(self, task):
@@ -119,7 +157,7 @@ class Player(PlayerModel, Camera, Target):
         self.update_position()
         self.draw()
         return task.cont
-    
+
     def player_add_block(self):
         block_id = self.base.hotbar_blocks[self.base.selected_hotbar_num][0]
         if self.target_position and \
@@ -139,3 +177,50 @@ class Player(PlayerModel, Camera, Target):
                 self.target_position.y,
                 self.target_position.z
             )
+
+    def change_position_when_interfering_with_block(self):
+        velocity_x, velocity_y, velocity_z = self.velocity
+        x, y, z = self.position
+        # X方向の干渉チェック
+        if 0 < velocity_x:
+            x_to_check = x + 0.5
+            if self.base.block.is_block_at(Point3(x_to_check, y, z)) or \
+                    self.base.block.is_block_at(Point3(x_to_check, y, z + 1)):
+                x = floor(x_to_check) - 1
+        elif velocity_x < 0:
+            x_to_check = x - 0.5
+            if self.base.block.is_block_at(Point3(x_to_check, y, z)) or \
+                    self.base.block.is_block_at(Point3(x_to_check, y, z)):
+                x = floor(x_to_check) + 2
+        # Y方向の干渉チェック
+        if 0 < velocity_y:
+            y_to_check = y + 0.5
+            if self.base.block.is_block_at(Point3(x, y_to_check, z)) or \
+                    self.base.block.is_block_at(Point3(x, y_to_check, z + 1)):
+                y = floor(y_to_check) - 1
+        elif velocity_y < 0:
+            y_to_check = y - 0.5
+            if self.base.block.is_block_at(Point3(x, y_to_check, z)) or \
+                    self.base.block.is_block_at(Point3(x, y_to_check, z + 1)):
+                y = floor(y_to_check) + 2
+        # Z方向の干渉チェック
+        if 0 < velocity_z:
+            z_to_check = z + 2
+            if self.base.block.is_block_at(Point3(x, y, z_to_check)):
+                z = floor(z_to_check) - 2
+                self.velocity.setZ(0)
+        self.position = Point3(x, y, z)
+
+    # ジャンプ中の位置を記録する
+    def record_jump_positions_with_time(self, dt, floor_height):
+        if self.is_on_ground:
+            self.passed_time_of_jump = 0
+            self.jump_positions_with_time = [(0, *self.position)]
+        else:
+            self.passed_time_of_jump += dt
+            self.jump_positions_with_time.append((self.passed_time_of_jump, *self.position))
+            if self.position.z <= floor_height:
+                if self.jump_positions_with_time:
+                    print(self.jump_positions_with_time)
+
+
