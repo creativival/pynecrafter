@@ -30,6 +30,7 @@ class Player(PlayerModel, Camera, Target):
         self.mouse_pos_y = 0
         self.target_position = None
         self.is_on_ground = True  # 地面に接している
+        self.is_flying = False  # 空中に浮かんでいる
         # self.passed_time_of_jump = None
         # self.jump_positions_with_time = None
 
@@ -90,7 +91,7 @@ class Player(PlayerModel, Camera, Target):
     def update_velocity(self):
         key_map = self.key_map
 
-        if self.is_on_ground:
+        if self.is_on_ground or self.is_flying:
             if key_map['w'] or key_map['a'] or key_map['s'] or key_map['d']:
                 heading = self.direction.x
                 if key_map['w'] and key_map['a']:
@@ -120,6 +121,7 @@ class Player(PlayerModel, Camera, Target):
 
             if key_map['space']:
                 self.is_on_ground = False
+                self.is_flying = False
                 self.velocity.setZ(Player.jump_speed)
 
     def update_position(self):
@@ -127,23 +129,34 @@ class Player(PlayerModel, Camera, Target):
         dt = globalClock.getDt()
         self.position = self.position + self.velocity * dt
 
-        # floor_height = 0
         floor_height = self.base.block.get_floor_height() + 1
-        # print(floor_height)
 
         # # ジャンプ中の位置情報を保存
         # self.record_jump_positions_with_time(dt, floor_height)
 
-        if not self.is_on_ground:
+        key_map = self.key_map
+        if key_map['arrow_up']:
+            self.is_on_ground = False
+            self.is_flying = True
+            self.position.setZ(self.position.getZ() + Player.jump_speed * dt)
+        elif key_map['arrow_down']:
+            self.position.setZ(self.position.getZ() - Player.jump_speed * dt)
             if self.position.z <= floor_height:
                 self.position.z = floor_height
                 self.is_on_ground = True
+                self.is_flying = False
+
+        if not self.is_flying:
+            if not self.is_on_ground:
+                if self.position.z <= floor_height:
+                    self.position.z = floor_height
+                    self.is_on_ground = True
+                else:
+                    self.velocity.setZ(self.velocity.getZ() - Player.gravity_force * dt)
             else:
-                self.velocity.setZ(self.velocity.getZ() - Player.gravity_force * dt)
-        else:
-            if floor_height < self.position.z:
-                self.is_on_ground = False
-                self.velocity.setZ(-Player.gravity_force * dt)
+                if floor_height < self.position.z:
+                    self.is_on_ground = False
+                    self.velocity.setZ(-Player.gravity_force * dt)
 
     def draw(self):
         self.base.player_node.setH(self.direction.x)

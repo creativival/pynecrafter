@@ -4,7 +4,7 @@ from panda3d.core import *
 from . import *
 
 
-class MC(ShowBase, UserInterface, Inventory, Menu):
+class MC(ShowBase, UserInterface, Inventory, Menu, Architecture):
     def __init__(self, ground_size=128, mode='normal'):
         self.mode = mode
         self.ground_size = ground_size

@@ -40,6 +40,10 @@ class Block:
         self.add_block_model(x, y, z, block_id)
         self.hide_invisible_blocks(Point3(x, y, z))
 
+    def add_block_if_not_exists(self, x, y, z, block_id):
+        if not self.is_block_at(Point3(x, y, z)):
+            self.add_block(x, y, z, block_id)
+
     def remove_block_dictionary(self, x, y, z):
         key = f'{floor(x)}_{floor(y)}_{floor(z)}'
         if key in self.block_dictionary:
@@ -125,7 +129,7 @@ class Block:
         ]
 
         # 設置または削除したブロックの周辺ブロックをチェック（６ヶ所）
-        print('POSITION', position)
+        # print('POSITION', position)
         for diff_position1 in diff_positions:
             block_position = position + diff_position1
             x, y, z = [floor(value) for value in block_position]
@@ -142,9 +146,9 @@ class Block:
 
                 if is_surrounded_by_six_blocks:
                     if not placeholder.isHidden():
-                        print('hide', x, y, z)
+                        # print('hide', x, y, z)
                         placeholder.hide()
                 else:
                     if placeholder.isHidden():
-                        print('show', x, y, z)
+                        # print('show', x, y, z)
                         placeholder.show()

@@ -94,6 +94,7 @@ Documents/
   │  │  ├ utils.py  # ユーティリティー
   │  │  ├ inventory.py  # インベントリ
   │  │  ├ menu.py  # メニュー関連
+  │  │  ├ architecture.py  # 建築MOD
   │  │  ├ mc.py  # 統合クラス
   │  │  
   │  ├ 01_01_showbase.py
@@ -105,6 +106,7 @@ Documents/
   │  ├ 07_01_egg_model_maker_1_2_3_4_5_6.py  # ブロックを作成
   │  ├ 07_02_main.py  # 統合クラスをインポートしてゲームを起動する
   │  ├ 08_01_main.py  # 統合クラスをインポートしてゲームを起動する
+  │  ├ 17_01_main.py  # 統合クラスをインポートしてゲームを起動する
   │  
 
 ```
