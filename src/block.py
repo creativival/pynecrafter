@@ -113,7 +113,7 @@ class Block:
         floor_height = -1
         for key in self.block_dictionary:
             if s.search(key):
-                _, _, block_z = [floor(float(value)) for value in key.split('_')]
+                _, _, block_z = [int(value) for value in key.split('_')]
                 if floor_height < block_z <= z:
                     floor_height = block_z
         return floor_height

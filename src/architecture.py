@@ -48,7 +48,7 @@ class Architecture:
                     heights.append(h - half_w + i - 1)
             else:
                 heights.append(h + half_w - i - 1)
-        print(heights)
+        # print(heights)
 
         # 家を建築する
         for i in range(w + 2):

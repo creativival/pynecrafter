@@ -5,4 +5,5 @@ from .user_interface import UserInterface
 from .inventory import Inventory
 from .menu import Menu
 from .architecture import Architecture
+from .connect_to_mcpi import ConnectToMCPI
 from .mc import MC

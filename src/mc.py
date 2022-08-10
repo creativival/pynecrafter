@@ -4,7 +4,7 @@ from panda3d.core import *
 from . import *
 
 
-class MC(ShowBase, UserInterface, Inventory, Menu, Architecture):
+class MC(ShowBase, UserInterface, Inventory, Menu, Architecture, ConnectToMCPI):
     def __init__(self, ground_size=128, mode='normal'):
         self.mode = mode
         self.ground_size = ground_size
@@ -14,6 +14,8 @@ class MC(ShowBase, UserInterface, Inventory, Menu, Architecture):
         UserInterface.__init__(self)
         Inventory.__init__(self)
         Menu.__init__(self)
+        if self.mode == 'mcpi':
+            ConnectToMCPI.__init__(self)
 
         # ウインドウの設定
         self.properties = WindowProperties()

@@ -18,7 +18,7 @@ class Camera:
     def __init__(self):
 
         # マウス操作を禁止
-        self.base.disableMouse()
+        self.base.c()
 
         # base cam
         self.base.cam.reparentTo(self.base.player_head_node)
