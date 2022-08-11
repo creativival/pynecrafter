@@ -39,6 +39,11 @@ Documents/
   │  │  ├ hotbar3.png
   │  │  ├ hotbar4.png
   │  │  ├ inventory.png
+  │  │
+  │  ├ music/
+  │  │  ├ BitCastle.mp3
+  │  │  ├ heavy_punch2.mp3
+  │  │  ├ walk_on_land.mp3
   │  │  
   │  ├ textures/
   │  │  ├ button/
@@ -95,6 +100,8 @@ Documents/
   │  │  ├ inventory.py  # インベントリ
   │  │  ├ menu.py  # メニュー関連
   │  │  ├ architecture.py  # 建築MOD
+  │  │  ├ connect_to_mcpi.py  # マイクラとの連携
+  │  │  ├ sound.py  # サウンド関連
   │  │  ├ mc.py  # 統合クラス
   │  │  
   │  ├ 01_01_showbase.py
@@ -131,6 +138,24 @@ https://itouhiro.hatenablog.com/entry/20130602/font
 ## Menu Design
 
 https://github.com/PlumpMath/Panda3DCraft
+
+## Sound
+
+DOVA-SYNDROME
+
+！[BitCastle](https://dova-s.jp/bgm/play3662.html?rtype=sb)
+
+効果音ラボ
+
+！[土の上を歩く](https://soundeffect-lab.info/sound/various/)
+
+！[ジャンプ](https://soundeffect-lab.info/sound/various/)
+
+！[ジャンプの着地](https://soundeffect-lab.info/sound/various/)
+
+！[ドアを開ける1](https://soundeffect-lab.info/sound/various/)
+
+！[重いパンチ2](https://soundeffect-lab.info/sound/battle/)
 
 ## Blocks
 
