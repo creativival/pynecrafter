@@ -72,7 +72,8 @@ class Player(PlayerModel, Camera, Target):
     def update_direction(self):
         if self.base.mouseWatcherNode.hasMouse() and \
                 self.base.inventory_node.isStashed() and \
-                self.base.menu_background_node.isStashed():
+                self.base.menu_background_node.isStashed() and \
+                self.base.console_window.getText() != '/':
             dt = globalClock.getDt()
             x, y = self.base.mouseWatcherNode.getMouse()
             dx = x - self.mouse_pos_x

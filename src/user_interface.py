@@ -28,7 +28,7 @@ class UserInterface:
             image = DrawImage(
                 parent=self.a2dBottomCenter,
                 image=f'textures/{block_image_name}.png',
-                scale=(16 / 164, 16 / 164, 16 / 164),
+                scale=(16 / 164, 1, 16 / 164),
                 pos=((i - 4) * 0.22, 0, 20 / 164)
             )
             self.set(f'bar{i + 1}', image)
@@ -108,6 +108,12 @@ class UserInterface:
         )
         self.taskMgr.doMethodLater(3, self.close_splash_screen, "close_splash_screen")
 
+        # コマンド受付
+        self.accept('/', self.toggle_console)
+
+        # ホットバーを表示/非表示の切り替え
+        self.accept('f3', self.toggle_hotbar)
+
     def select_hotbar(self, i):
         self.selected_hotbar_num = i - 1
         self.selected_block = UserInterface.hotbar_blocks[i - 1]
@@ -151,4 +157,22 @@ class UserInterface:
         wellcome_text = 'ようこそ Pynecrafter!'
         self.console_window.setText(wellcome_text)
         self.console_window.start_time = time()  # 実行した時間を start_time に記録
+        self.enable_sound_effect = True
         return task.done
+
+    def toggle_console(self):
+        if self.console_window.getText() == '':
+            self.console_window.setText('/')
+            self.console_window.start_time = time() + 180
+        else:
+            self.console_window.setText('')
+
+    def toggle_hotbar(self):
+        if self.hotbar.isHidden():
+            self.hotbar.show()
+            for i in range(1, 10):
+                self.get(f'bar{i}').show()
+        else:
+            self.hotbar.hide()
+            for i in range(1, 10):
+                self.get(f'bar{i}').hide()
