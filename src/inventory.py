@@ -78,7 +78,7 @@ class Inventory:
             button = DirectButton(
                 image=f'textures/{block_image_name}.png',
                 parent=self.inventory_node,
-                scale=(16 / 164, 16 / 164, 16 / 164),
+                scale=(16 / 164, 1, 16 / 164),
                 pos=((column_num - 5) * 0.22, 0, - 0.11 - (row_num - 2) * 0.22),
                 relief=None,  # ボタンを持ち上げて表示しない
                 command=self.select_inventory_block,

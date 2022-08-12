@@ -5,6 +5,7 @@ from panda3d.core import *
 
 class Camera:
     far_length = 50
+    # far_length = 500  # TODO
     base_camera_back = 5
     base_camera_height = 3
     base_camera_forward = 6
@@ -14,11 +15,12 @@ class Camera:
     player_head_height = 0.8
     mirror_cam_radius = 5
     mirror_cam_film_size = (8, 6)
+    # mirror_cam_film_size = (16, 12)  # TODO
 
     def __init__(self):
 
         # マウス操作を禁止
-        self.base.c()
+        self.base.disableMouse()
 
         # base cam
         self.base.cam.reparentTo(self.base.player_head_node)

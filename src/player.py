@@ -31,6 +31,8 @@ class Player(PlayerModel, Camera, Target):
         self.target_position = None
         self.is_on_ground = True  # 地面に接している
         self.is_flying = False  # 空中に浮かんでいる
+        self.is_walking = False  # 歩いている
+        self.walking_count = 0  # 歩行のカウント
         # self.passed_time_of_jump = None
         # self.jump_positions_with_time = None
 
@@ -65,6 +67,7 @@ class Player(PlayerModel, Camera, Target):
 
         # プレイヤーのアップデート
         base.taskMgr.add(self.player_update, "player_update")
+        base.taskMgr.doMethodLater(0.5, self.update_motion, "update_motion")
 
     def update_direction(self):
         if self.base.mouseWatcherNode.hasMouse() and \
@@ -90,9 +93,13 @@ class Player(PlayerModel, Camera, Target):
 
     def update_velocity(self):
         key_map = self.key_map
+        walk_sound = self.base.walk_sound
 
         if self.is_on_ground or self.is_flying:
             if key_map['w'] or key_map['a'] or key_map['s'] or key_map['d']:
+                self.is_walking = True
+                if walk_sound.status() is not walk_sound.PLAYING:
+                    walk_sound.play()
                 heading = self.direction.x
                 if key_map['w'] and key_map['a']:
                     angle = 135
@@ -117,9 +124,14 @@ class Player(PlayerModel, Camera, Target):
                         0
                     ) * Player.speed
             else:
+                self.is_walking = False
+                if walk_sound.status() is walk_sound.PLAYING:
+                    walk_sound.stop()
                 self.velocity = Vec3(0, 0, 0)
 
             if key_map['space']:
+                if self.is_on_ground:
+                    self.base.jump_sound.play()
                 self.is_on_ground = False
                 self.is_flying = False
                 self.velocity.setZ(Player.jump_speed)
@@ -151,6 +163,7 @@ class Player(PlayerModel, Camera, Target):
                 if self.position.z <= floor_height:
                     self.position.z = floor_height
                     self.is_on_ground = True
+                    self.base.landing_of_jump_sound.play()
                 else:
                     self.velocity.setZ(self.velocity.getZ() - Player.gravity_force * dt)
             else:
@@ -170,6 +183,26 @@ class Player(PlayerModel, Camera, Target):
         self.update_position()
         self.draw()
         return task.cont
+
+    def update_motion(self, task):
+        if self.is_walking:
+            self.walking_count += 1
+            if self.walking_count % 2:
+                self.base.player_right_hand_node.setP(70)
+                self.base.player_left_hand_node.setP(110)
+                self.base.player_right_leg_node.setP(20)
+                self.base.player_left_leg_node.setP(-20)
+            else:
+                self.base.player_right_hand_node.setP(110)
+                self.base.player_left_hand_node.setP(70)
+                self.base.player_right_leg_node.setP(-20)
+                self.base.player_left_leg_node.setP(20)
+        else:
+            self.base.player_right_hand_node.setP(90)
+            self.base.player_left_hand_node.setP(90)
+            self.base.player_right_leg_node.setP(0)
+            self.base.player_left_leg_node.setP(0)
+        return task.again
 
     def player_add_block(self):
         block_id = self.base.hotbar_blocks[self.base.selected_hotbar_num][0]
@@ -235,5 +268,3 @@ class Player(PlayerModel, Camera, Target):
             if self.position.z <= floor_height:
                 if self.jump_positions_with_time:
                     print(self.jump_positions_with_time)
-
-

@@ -4,10 +4,11 @@ from panda3d.core import *
 from . import *
 
 
-class MC(ShowBase, UserInterface, Inventory, Menu, Architecture, ConnectToMCPI):
+class MC(ShowBase, UserInterface, Inventory, Menu, Architecture, ConnectToMCPI, Sound):
     def __init__(self, ground_size=128, mode='normal'):
         self.mode = mode
         self.ground_size = ground_size
+        self.enable_sound_effect = False
         # ShowBaseを継承する
         ShowBase.__init__(self)
         self.font = self.loader.loadFont('fonts/PixelMplus12-Regular.ttf')
@@ -16,11 +17,13 @@ class MC(ShowBase, UserInterface, Inventory, Menu, Architecture, ConnectToMCPI):
         Menu.__init__(self)
         if self.mode == 'mcpi':
             ConnectToMCPI.__init__(self)
+        Sound.__init__(self)
 
         # ウインドウの設定
         self.properties = WindowProperties()
         self.properties.setTitle('Pynecrafter')
         self.properties.setSize(1200, 800)
+        self.properties.setSize(960, 540)  # TODO
         self.win.requestProperties(self.properties)
         self.setBackgroundColor(0, 1, 1)
 

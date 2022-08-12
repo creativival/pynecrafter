@@ -34,6 +34,8 @@ class Block:
             block_model = self.base.loader.loadModel(f'models/{block_id}')
             self.block_models[block_id] = block_model
         block_model.instanceTo(placeholder)
+        if self.base.enable_sound_effect:
+            self.base.set_block_sound.play()
 
     def add_block(self, x, y, z, block_id):
         self.add_block_dictionary(x, y, z, block_id)
@@ -59,6 +61,8 @@ class Block:
         self.remove_block_dictionary(x, y, z)
         self.remove_block_model(x, y, z)
         self.hide_invisible_blocks(Point3(x, y, z))
+        if self.base.enable_sound_effect:
+            self.base.break_sound.play()
 
     def set_flat_world(self):
         ground_size = self.ground_size

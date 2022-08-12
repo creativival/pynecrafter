@@ -186,7 +186,7 @@ class Minecraft(ShowBase):
             image = DrawImage(
                 parent=self.a2dpBottomCenter,
                 image=f'cube_textures/{block_id}.png',
-                scale=(16 / 164, 16 / 164, 16 / 164),
+                scale=(16 / 164, 1, 16 / 164),
                 pos=((i - 4) * 0.22, 0, 20 / 164)
             )
             self.set(f'bar{i + 1}', image)
