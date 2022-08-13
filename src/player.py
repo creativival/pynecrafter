@@ -1,4 +1,5 @@
 """src/player.py"""
+from time import time
 from math import *
 from panda3d.core import *
 from direct.showbase.ShowBaseGlobal import globalClock
@@ -33,6 +34,8 @@ class Player(PlayerModel, Camera, Target):
         self.is_flying = False  # 空中に浮かんでいる
         self.is_walking = False  # 歩いている
         self.walking_count = 0  # 歩行のカウント
+        self.jump_start_time = None  # ジャンプを開始した時間
+        self.is_double_jumping = False  # ２段ジャンプしている
         # self.passed_time_of_jump = None
         # self.jump_positions_with_time = None
 
@@ -131,10 +134,18 @@ class Player(PlayerModel, Camera, Target):
                 self.velocity = Vec3(0, 0, 0)
 
             if key_map['space']:
+                print('jump')
                 if self.is_on_ground:
                     self.base.jump_sound.play()
                 self.is_on_ground = False
                 self.is_flying = False
+                self.jump_start_time = time()
+                self.velocity.setZ(Player.jump_speed)
+        elif self.jump_start_time and time() - self.jump_start_time > 0.5:
+            if key_map['space'] and not self.is_double_jumping:
+                print('double jump')
+                self.is_double_jumping = True
+                self.base.jump_sound.play()
                 self.velocity.setZ(Player.jump_speed)
 
     def update_position(self):
@@ -164,6 +175,8 @@ class Player(PlayerModel, Camera, Target):
                 if self.position.z <= floor_height:
                     self.position.z = floor_height
                     self.is_on_ground = True
+                    self.jump_start_time = None
+                    self.is_double_jumping = False
                     self.base.landing_of_jump_sound.play()
                 else:
                     self.velocity.setZ(self.velocity.getZ() - Player.gravity_force * dt)
