@@ -15,7 +15,7 @@ class Camera:
     player_head_height = 0.8
     mirror_cam_radius = 5
     mirror_cam_film_size = (8, 6)
-    # mirror_cam_film_size = (16, 12)  # TODO
+    mirror_cam_film_size = (16, 12)  # TODO
 
     def __init__(self):
 

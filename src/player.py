@@ -246,23 +246,39 @@ class Player(PlayerModel, Camera, Target):
             x_to_check = x + 0.5
             if self.base.block.is_block_at(Point3(x_to_check, y, z)) or \
                     self.base.block.is_block_at(Point3(x_to_check, y, z + 1)):
-                x = floor(x_to_check) - 1
+                floor_height = self.base.block.get_floor_height_at(x_to_check, y)
+                if floor_height is not None and floor_height - z <= 1:
+                    z = floor_height + 1
+                else:
+                    x = floor(x_to_check) - 1
         elif velocity_x < 0:
             x_to_check = x - 0.5
             if self.base.block.is_block_at(Point3(x_to_check, y, z)) or \
-                    self.base.block.is_block_at(Point3(x_to_check, y, z)):
-                x = floor(x_to_check) + 2
-        # Y方向の干渉チェック
+                    self.base.block.is_block_at(Point3(x_to_check, y, z + 1)):
+                floor_height = self.base.block.get_floor_height_at(x_to_check, y)
+                if floor_height is not None and floor_height - z <= 1:
+                    z = floor_height + 1
+                else:
+                    x = floor(x_to_check) + 2
+        # Y方向の 干渉チェック
         if 0 < velocity_y:
             y_to_check = y + 0.5
             if self.base.block.is_block_at(Point3(x, y_to_check, z)) or \
                     self.base.block.is_block_at(Point3(x, y_to_check, z + 1)):
-                y = floor(y_to_check) - 1
+                floor_height = self.base.block.get_floor_height_at(x, y_to_check)
+                if floor_height is not None and floor_height - z <= 1:
+                    z = floor_height + 1
+                else:
+                    y = floor(y_to_check) - 1
         elif velocity_y < 0:
             y_to_check = y - 0.5
             if self.base.block.is_block_at(Point3(x, y_to_check, z)) or \
                     self.base.block.is_block_at(Point3(x, y_to_check, z + 1)):
-                y = floor(y_to_check) + 2
+                floor_height = self.base.block.get_floor_height_at(x, y_to_check)
+                if floor_height is not None and floor_height - z <= 1:
+                    z = floor_height + 1
+                else:
+                    y = floor(y_to_check) + 2
         # Z方向の干渉チェック
         if 0 < velocity_z:
             z_to_check = z + 2

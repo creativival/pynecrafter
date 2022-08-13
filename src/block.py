@@ -156,3 +156,17 @@ class Block:
                     if placeholder.isHidden():
                         # print('show', x, y, z)
                         placeholder.show()
+
+    def get_floor_height_at(self, x, y):
+        x, y = floor(x), floor(y)
+        s = re.compile(f'{x}_{y}_.+')
+        heights = []
+        for key in self.block_dictionary:
+            if s.search(key):
+                _, _, block_z = [int(value) for value in key.split('_')]
+                heights.append(block_z)
+
+        if len(heights):
+            return max(heights)
+        else:
+            return None
