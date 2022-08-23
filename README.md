@@ -102,6 +102,8 @@ Documents/
   │  │  ├ architecture.py  # 建築MOD
   │  │  ├ connect_to_mcpi.py  # マイクラとの連携
   │  │  ├ sound.py  # サウンド関連
+  │  │  ├ noise_utils.py  # ノイズのユーティリティー
+  │  │  ├ cloud.py  # 雲
   │  │  ├ mc.py  # 統合クラス
   │  │  
   │  ├ 01_01_showbase.py
@@ -114,6 +116,9 @@ Documents/
   │  ├ 07_02_main.py  # 統合クラスをインポートしてゲームを起動する
   │  ├ 08_01_main.py  # 統合クラスをインポートしてゲームを起動する
   │  ├ 17_01_main.py  # 統合クラスをインポートしてゲームを起動する
+  │  ├ 21_01_perlin_noise.py  # 統合クラスをインポートしてゲームを起動する
+  │  ├ 21_02_perlin_noise.py  # 統合クラスをインポートしてゲームを起動する
+  │  ├ 21_03_main.py  # 統合クラスをインポートしてゲームを起動する
   │  
 
 ```

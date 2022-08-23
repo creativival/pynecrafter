@@ -7,4 +7,6 @@ from .menu import Menu
 from .architecture import Architecture
 from .connect_to_mcpi import ConnectToMCPI
 from .sound import Sound
+from .noise_utils import make_perlin_noise
+from .cloud import Cloud
 from .mc import MC

@@ -16,6 +16,8 @@ class Sound:
         # bgm
         self.bgm = self.loader.loadMusic(Sound.BGM)
         self.bgm.setLoop(True)
+        # self.bgm.setVolume(0.5)  # ボリューム
+        # self.bgm.setPlayRate(0.75)  # テンポ
         self.bgm.play()
 
         # sound effect

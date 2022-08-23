@@ -4,8 +4,9 @@ from panda3d.core import *
 from . import *
 
 
-class MC(ShowBase, UserInterface, Inventory, Menu, Architecture, ConnectToMCPI, Sound):
-    def __init__(self, ground_size=128, mode='normal'):
+class MC(ShowBase, UserInterface, Inventory, Menu, Architecture, ConnectToMCPI,
+         Sound, Cloud):
+    def __init__(self, ground_size=128, mode='normal', cloud_range=0):
         self.mode = mode
         self.ground_size = ground_size
         self.enable_sound_effect = False
@@ -18,6 +19,8 @@ class MC(ShowBase, UserInterface, Inventory, Menu, Architecture, ConnectToMCPI, 
         if self.mode == 'mcpi':
             ConnectToMCPI.__init__(self)
         Sound.__init__(self)
+        if cloud_range:
+            Cloud.__init__(self, cloud_range)
 
         # ウインドウの設定
         self.properties = WindowProperties()
